@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+    <div class="content-section">
+      <h3>Catagory</h3>
+         <table class="table">
+      <thead>
+  
+        {% if not session.username %}
+          <tr>
+            <td>
+              Name
+            </td>
+          </tr>
+          {% else %}
+            <tr>
+              <th>Name</th>
+              <th></th>
+              <th></th>
+            </tr>
+        {% endif %}
+      </thead>
+      <tbody>
+      {% for catagory in catagory %}
+        {% if not session.username %}
+          <tr>
+            <td><a href="{{url_for('showItem', catagory_id = catagory.id)}}"> {{ catagory.name }} </a></td>
+          </tr>
+          {% else %}
+          <tr>
+            <td><a href="{{url_for('showItem', catagory_id = catagory.id)}}"> {{ catagory.name }} </a></td>
+            <td><a href="{{url_for('editCatagory', catagory_id = catagory.id)}}"><button type="submit" class="btn btn-success">Edit</button> </a></td>
+            <td><a href="{{url_for('deleteCatagory', catagory_id = catagory.id)}}"><button type="submit" class="btn btn-danger">Delete</button> </a></td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+  
+      <div class="col-md-5">
+        <div class="content-section">
+          <h3>Menu Items</h3>
+            <ul class="list-group">
+              {% for item in items %}
+              <li class="list-group-item list-group-item-light"><a href="{{url_for('showspecificcatagoryMenu', catagory_name = item.catagory.name)}}"> {{ item.name }} </a> ({{ item.catagory.name }})</li>
+              {% endfor %}
+            </ul>
+        </div>
+      </div>
+  </div>
+
+
+{% endblock content %}

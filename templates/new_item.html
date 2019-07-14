@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+{% block content %}
+    <h1>Create New Item</h1>
+    <article class="media content-section">
+    <form action="" method="POST">
+    <div class="media-body">
+   
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <select class="form-control" style="width: 700px;" name="item_catagory_id">
+        <option value="" selected="selected">Select Catagory</option>
+      {% for catagory in allcatagory %}
+        <option value="{{ catagory.id }}">{{ catagory.name }}</option>
+      {% endfor %}
+  </select>
+  </div>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" style="width: 700px;" name="item_name" placeholder="Name..." required="required">
+  </div>
+  <div class="form-group">
+    <label for="name">Description:</label>
+    <input type="text" class="form-control" style="width: 700px;" name="item_description" placeholder="Description..." required="required">
+  </div>
+  <div class="form-group">
+    <label for="name">Price:</label>
+    <input type="text" class="form-control" style="width: 700px;" name="item_price" placeholder="$10" required="required">
+  </div>
+  <button type="submit" class="btn btn-success">Create</button>
+</form>
+</div>
+ </article>
+{% endblock content %}
